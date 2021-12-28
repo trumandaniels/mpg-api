@@ -9,7 +9,7 @@ Creating python3 virtual environment:
 ```
 python3 -m venv /path/to/new/virtual/VIRTUALENVNAME 
 ```
-Activating the environment:
+You can activate the environment using:
 ```
 source /path/to/new/virtual/VIRTUALENVNAME/bin/activate
 ```
@@ -18,4 +18,15 @@ note: I am not testing with anaconda but it should still work
 Then install neccesary packages to run the scripts
 ```
 pip install -r /path/to/requirements.txt 
+```
+
+In seperate console tabs run the server locally:
+```
+python3 run_server.py
+```
+
+and
+
+```
+python3 example_requests.py
 ```
