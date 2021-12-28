@@ -1,5 +1,5 @@
 # MPG API
-##### What is this?
+##### What is this project?
 A RESTful API that returns mileage (MPG) and other data on specific cars. I have imported the data into a local sqlite database called auto-mpg.db from data sourced [here](https://archive.ics.uci.edu/ml/datasets/auto+mpg). I have only tested on linux, but I may add Windows compatibility at a later time.
 
 ## Set Up
