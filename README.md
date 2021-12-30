@@ -7,11 +7,11 @@ First (Optional) Step: create and activate python virtual environemnt or anacond
 
 Creating python3 virtual environment:
 ```
-python3 -m venv /path/to/new/virtual/VIRTUALENVNAME 
+$ python3 -m venv /path/to/new/virtual/VIRTUALENVNAME 
 ```
 You can activate the environment using:
 ```
-source /path/to/new/virtual/VIRTUALENVNAME/bin/activate
+$ source /path/to/new/virtual/VIRTUALENVNAME/bin/activate
 ```
 note: I am not testing with anaconda but it should still work
 
