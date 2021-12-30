@@ -5,7 +5,7 @@ A RESTful API that returns mileage (MPG) and other data on specific cars. I have
 ## Set Up
 First (Optional) Step: create and activate python virtual environemnt or anaconda environment first (skipping this step could cause package dependency/compatibility issues if your machine is used for many projects)
 
-Creating python3 virtual environment:
+Creating python virtual environment:
 ```
 $ python3 -m venv /path/to/new/virtual/VIRTUALENVNAME 
 ```
@@ -13,7 +13,7 @@ You can activate the environment using:
 ```
 $ source /path/to/new/virtual/VIRTUALENVNAME/bin/activate
 ```
-note: I am not testing with anaconda but it should still work
+
 
 Then install neccesary packages to run the scripts
 ```
@@ -38,4 +38,5 @@ This has already been included included in auto-mpg.db but not in the original d
 Creating null column
 ```
 ALTER TABLE cars ADD yearnameID;
+SELECT (modelyear||" "||carname) AS yearnameCOPY FROM cars
 ```
