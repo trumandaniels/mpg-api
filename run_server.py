@@ -6,9 +6,14 @@ from sqlalchemy.sql import expression, functions
 from sqlalchemy import types
 from sqlalchemy.orm import Session
 from sqlalchemy import create_engine, MetaData, Table
+from flask_sqlalchemy import SQLAlchemy
+
 
 app = Flask(__name__)
 api = Api(app)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///auto-mpg.db'
+db = SQLAlchemy(app)
+
 
 engine = create_engine('sqlite:///auto-mpg.db')
 metadata = MetaData(bind=engine)
@@ -31,7 +36,6 @@ def get_column_names(ENGINE=engine):
         column_names = [] #Every column
         result = con.execute("PRAGMA table_info('cars')") #returns iterable of tuples
         for row in result:
-        print(row)
             column_names.append(row[1])
     return column_names
 
@@ -57,10 +61,84 @@ def check_if_ID_col_exists(COL_NAME="ID", COLUMN_NAMES=get_column_names()):
     else:
         return False
     
-if check_if_ID_col_exists == True:
+print(get_column_names())
+
+if check_if_ID_col_exists() == False: #if we haven't created an ID column yet, do
     #create ID Column
+    #by combining carname + modelyear
+    #should be a unique identifier
+    with engine.connect() as con:
+        result = con.execute("SELECT (carname||\" \"||modelyear) AS nameyearID FROM cars") 
+        print(result)
+    pass
+
+
+car_put_args = reqparse.RequestParser()
+car_put_args.add_argument("nameyearID",type=str, help="Name of video", required=False)
+car_put_args.add_argument("mpg",type=float)
+car_put_args.add_argument("cylinders",type=int, help="Likes on the video")
+car_put_args.add_argument("displacement",type=int)
+car_put_args.add_argument("weight",type=int, help="Likes on the video")
+car_put_args.add_argument("acceleration",type=float)
+car_put_args.add_argument("modelyear",type=int, help="Likes on the video")
+car_put_args.add_argument("origin",type=int)
+car_put_args.add_argument("carname",type=str, help="Likes on the video")
+
+resource_fields = {
+    'nameyearID': fields.String,
+    'mpg': fields.Float,
+    'cylinders': fields.Integer,
+    'displacement': fields.Integer,
+    'weight': fields.Integer,
+    'acceleration': fields.Float,
+    'modelyear': fields.Integer,
+    'origin': fields.Integer,
+    'carname': fields.String,
+}
+
+
+
+## 'mpg', 'cylinders', 'displacement', 'horsepower', 'weight', 'acceleration', 'modelyear', 'origin', 'carname'
+class CarModel(db.Model):
+    nameyearID = db.Column(db.String(250), primary_key=True)
+    mpg = db.Column(db.Float, nullable=False)
+    cylinders = db.Column(db.Integer, nullable=False)
+    displacement = db.Column(db.Integer, nullable=False)
+    weight = db.Column(db.Integer, nullable=False)
+    acceleration = db.Column(db.Float, nullable=False)
+    modelyear = db.Column(db.Integer, nullable=False)
+    origin = db.Column(db.Integer, nullable=False)
+    carname = db.Column(db.String(250), nullable=False)
     
+    def __repr(self):
+        return f"Video(name={name}, views={views}, likes={likes}"
+
+class Car(Resource):
+    @marshal_with(resource_fields) #serialize return values with resource_fields
+    def get(self, nameyearID):
+        result = CarModel.query.filter_by(id=nameyearID).first() #get first video_id
+        if not result:
+            abort(404, message="could not ind video with that id")
+        return result
     
+    @marshal_with(resource_fields)
+    def put(self, video_id):
+        args = video_put_args.parse_args()
+        result = VideoModel.query.filter_by(id=nameyearID).first()
+        if result:
+            abort(409, message="Video id taken...")
+        video = VideoModel(id=video_id, name=args["name"], views=args["views"], likes=args["likes"])
+        db.session.add(video)
+        db.session.commit()
+        return video, 201
+
+    def delete(self, video_id):
+        pass
+    
+    def patch(self, video_id):
+        args = video_put_args.parse_args()
+        #query database, getobject, modify object & commit
+
 #conn = engine.connect()
 #column_names = conn.execute(query).keys()
 #column_names = engine.execute('SELECT * FROM cars').all()
@@ -90,17 +168,17 @@ with Session(engine) as session: # https://docs.sqlalchemy.org/en/14/orm/session
 
 #engine = create_engine('sqlite:///auto-mpg')
 
-column_names = db.__table__.columns.keys()  
-print(column_names)
-db.session.commit() 
+#column_names = db.__table__.columns.keys()  
+#print(column_names)
+#db.session.commit() 
 
 #column_names = conn.execute(query).keys()
 
 
 #Combining with SQLAlchemy
 # ^^^ link: https://stackoverflow.com/questions/17265848/concatenating-columns-at-query-level-in-sqlalchemy
-functions.concat(
-    expressions.cast(table1.col2, types.Unicode), table2.col2)
+#functions.concat(
+#    expressions.cast(table1.col2, types.Unicode), table2.col2)
 
 
 
