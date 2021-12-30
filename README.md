@@ -1,5 +1,5 @@
 # MPG API
-##### What is this project?
+## What is this project?
 A RESTful API that returns mileage (MPG) and other data on specific cars. I have imported the data into a local sqlite database called auto-mpg.db from data sourced [here](https://www.kaggle.com/uciml/autompg-dataset). I have only tested on linux, but I may add Windows compatibility at a later time.
 
 ## Set Up
@@ -30,4 +30,12 @@ and an example script that calls the API to query the database and returns json 
 
 ```
 (VIRTUALENVNAME) $ python3 example_requests.py
+```
+
+### Some data preperation I ran to feature engineer a unique identifier 
+This has already been included included in auto-mpg.db but not in the original data source
+
+Creating null column
+```
+ALTER TABLE cars ADD yearnameID;
 ```
