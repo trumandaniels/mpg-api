@@ -72,7 +72,6 @@ if check_if_ID_col_exists() == False: #if we haven't created an ID column yet, d
         print(result)
     pass
 
-
 car_put_args = reqparse.RequestParser()
 car_put_args.add_argument("nameyearID",type=str, help="Name of video", required=False)
 car_put_args.add_argument("mpg",type=float)
@@ -95,8 +94,6 @@ resource_fields = {
     'origin': fields.Integer,
     'carname': fields.String,
 }
-
-
 
 ## 'mpg', 'cylinders', 'displacement', 'horsepower', 'weight', 'acceleration', 'modelyear', 'origin', 'carname'
 class CarModel(db.Model):
@@ -122,21 +119,32 @@ class Car(Resource):
         return result
     
     @marshal_with(resource_fields)
-    def put(self, video_id):
-        args = video_put_args.parse_args()
-        result = VideoModel.query.filter_by(id=nameyearID).first()
+    def put(self, nameyearID):
+        args = car_put_args.parse_args()
+        result = CarModel.query.filter_by(nameyearID=nameyearID).first()
         if result:
             abort(409, message="Video id taken...")
-        video = VideoModel(id=video_id, name=args["name"], views=args["views"], likes=args["likes"])
-        db.session.add(video)
+        car = CarModel(nameyearID=nameyearID,
+                         mpg=args["mpg"],
+                         cylinders=args["cylinders"], 
+                         displacement=args["displacement"],
+                         weight=args["weight"],
+                         acceleration=args["acceleration"],
+                         modelyear=args["modelyear"],
+                         origin=args["origin"],
+                         carname=args["carname"],
+                         )
+        
+        
+        db.session.add(car)
         db.session.commit()
         return video, 201
 
-    def delete(self, video_id):
+    def delete(self, nameyearID):
         pass
     
-    def patch(self, video_id):
-        args = video_put_args.parse_args()
+    def patch(self, nameyearID):
+        args = car_put_args.parse_args()
         #query database, getobject, modify object & commit
 
 #conn = engine.connect()
@@ -180,7 +188,7 @@ with Session(engine) as session: # https://docs.sqlalchemy.org/en/14/orm/session
 #functions.concat(
 #    expressions.cast(table1.col2, types.Unicode), table2.col2)
 
-
+api.add_resource(Car, "/car/<string:carname>")    
 
 '''
 class VideoModel(db.Model):
