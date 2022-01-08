@@ -2,7 +2,7 @@
 ## What is this project?
 A RESTful API that returns mileage (MPG) and other data on specific cars. I have imported the data into a local sqlite database called auto-mpg.db from data sourced [here](https://www.kaggle.com/uciml/autompg-dataset). I have only tested on linux, but I may add Windows compatibility at a later time.
 
-The basic idea here is that I build a keras model with a fuel efficency dataset, and then serving it via API.
+The basic idea here is that I built a keras model (with model.ipynb) with a fuel efficency dataset (auto-mpg.csv) and then serve it via API (simple_server.py).
 
 ### A couple of model notes:
 The dataset itself is composed of. I have replaced the ambigious "origin" that uses 1,2,3 as labels, to "American", "European", or "Asian".
@@ -27,7 +27,7 @@ Then install neccesary packages to run the scripts
 ## How to make predictions:
 Run the script that starts the server (API) locally:
 ```
-(VIRTUALENVNAME) ~ $ python3 /path/to/run_server.py
+(VIRTUALENVNAME) ~ $ python3 /path/to/simple_server.py
 ```
 
 In a seperate console, you can use the model with:
