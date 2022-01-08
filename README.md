@@ -37,7 +37,7 @@ In a seperate console, you can use the model with:
 example response:
 ```
 {
-  "mpg": "23.186745"
+  'mpg': '26.81698'
 }
 ```
 
@@ -46,7 +46,7 @@ and an example script that calls the API to query the database and returns json 
 
 ```
 (VIRTUALENVNAME) ~ $ python3 /path/to/example_request.py
-{'mpg': '23.186745'}
+{'mpg': '26.81698'}
 ```
 
 #### Sources:
