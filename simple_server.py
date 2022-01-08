@@ -1,13 +1,12 @@
-#https://blog.keras.io/building-a-simple-keras-deep-learning-rest-api.html
-#https://curiousily.com/posts/deploy-keras-deep-learning-project-to-production-with-flask/
-
 from flask import Flask, jsonify, request
 from tensorflow import keras
 import tensorflow as tf
+from pathlib import Path
 
 app = Flask(__name__)
 
-model = keras.models.load_model("/home/truman/Documents/DataAPI/mpg_model_saved/")
+load_path = Path.cwd().joinpath("mpg_model_saved")
+model = keras.models.load_model(load_path)
 
 @app.route("/", methods=["POST"])
 def predict():
@@ -17,6 +16,4 @@ def predict():
     return jsonify({"mpg": str(predictions[0][0])})
 
 if __name__ == "__main__":
-    print(("* Loading Keras model and Flask starting server..."
-        "please wait until server has fully started"))
     app.run(debug=True)
