@@ -49,8 +49,12 @@ and an example script that calls the API to query the database and returns json 
 {'mpg': '23.186745'}
 ```
 
-Sources:
+#### Sources:
+
 https://blog.keras.io/building-a-simple-keras-deep-learning-rest-api.html
+
 https://curiousily.com/posts/deploy-keras-deep-learning-project-to-production-with-flask/
+
 https://www.tensorflow.org/guide/keras/save_and_serialize
+
 https://keras.io/examples/structured_data/structured_data_classification_from_scratch/
