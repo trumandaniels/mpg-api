@@ -7,36 +7,39 @@ First (Optional) Step: create and activate python virtual environemnt or anacond
 
 Creating python virtual environment:
 ```
-$ python3 -m venv /path/to/new/virtual/VIRTUALENVNAME 
+~ $ python3 -m venv /path/to/new/virtual/VIRTUALENVNAME 
 ```
 You can activate the environment using:
 ```
-$ source /path/to/new/virtual/VIRTUALENVNAME/bin/activate
+~ $ source /path/to/new/virtual/VIRTUALENVNAME/bin/activate
 ```
-
 
 Then install neccesary packages to run the scripts
 ```
-(VIRTUALENVNAME) $ pip install -r /path/to/requirements.txt 
+(VIRTUALENVNAME) ~ $ pip install -r /path/to/requirements.txt 
 ```
 
-### In seperate console tabs (each running the python environment) 
+### How to make predictions:
 Run the script that starts the server (API) locally:
 ```
-(VIRTUALENVNAME) $ python3 run_server.py
+(VIRTUALENVNAME) ~ $ python3 /path/to/run_server.py
+```
+
+In a seperate console, you use the model with:
+
+```
+~ $ curl -d '{"cylinders":6,"displacement":300,"horsepower":150,"weight":3000,"acceleration":10,"modelyear":85,"origin":"American"}' -H "Content-Type: application/json" -X POST http://localhost:5000
+```
+example response:
+```
+{
+  "mpg": "23.186745"
+}
 ```
 
 and an example script that calls the API to query the database and returns json formatted data
 
 ```
-(VIRTUALENVNAME) $ python3 example_requests.py
-```
-
-### Some data preperation I ran to feature engineer a unique identifier 
-This has already been included included in auto-mpg.db but not in the original data source
-
-Creating null column
-```
-ALTER TABLE cars ADD yearnameID;
-SELECT (modelyear||" "||carname) AS yearnameCOPY FROM cars
+(VIRTUALENVNAME) ~ $ python3 /path/to/example_request.py
+{'mpg': '23.186745'}
 ```
