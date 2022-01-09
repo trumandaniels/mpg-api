@@ -1,37 +1,43 @@
 # MPG API
 ## What is this project?
-A RESTful API that returns mileage (MPG) and other data on specific cars. I have imported the data into a local sqlite database called auto-mpg.db from data sourced [here](https://www.kaggle.com/uciml/autompg-dataset). I have only tested on linux, but I may add Windows compatibility at a later time.
+A RESTful API that returns mileage (MPG) and other data on specific cars. I have imported the data into a local sqlite database called auto-mpg.db from data sourced [here](https://www.kaggle.com/uciml/autompg-dataset). I have only tested on linux with python 3.9.4, but I may add Windows compatibility at a later time.
 
 The basic idea here is that I built a keras model (with model.ipynb) with a fuel efficency dataset (auto-mpg.csv) and then serve it via API (simple_server.py).
 
 ### A couple of model notes:
-The dataset itself is composed of. I have replaced the ambigious "origin" that uses 1,2,3 as labels, to "American", "European", or "Asian".
-
-```
-~ $ python3 -m venv /path/to/install/location/VIRTUALENVNAME 
-```
+The dataset itself is composed of. I have replaced the ambigious "origin" that uses 1,2,3 as labels, to "American", "European", or "Asian". Also the dataset is only for cars from 1970 to 1993, which means cars from other years are extrapolated poorly (so keep that in mind when estimating a car from 2022).
 
 ## Set Up
 First (Optional) Step: create and activate python virtual environemnt or anaconda environment first (skipping this step could cause package dependency/compatibility issues if your machine is used for many projects)
 
-Creating python virtual environment:
+Changing the working directory to wherever you extract the downloaded folder to
 ```
-~ $ python3 -m venv /path/to/new/virtual/VIRTUALENVNAME 
+~ $ cd /path/to/extracted/mpg-api
 ```
-You can activate the environment using:
+
+#### Creating python virtual environment:
+either
 ```
-~ $ source /path/to/new/virtual/VIRTUALENVNAME/bin/activate
+~ $  virtualenv --python=/usr/bin/python3.9 /path/to/new/environment/VIRTUALENVNAME 
+```
+or
+```
+~ $ python3 -m venv /path/to/new/environment/VIRTUALENVNAME 
+```
+#### You can then activate the environment using:
+```
+~ $ source /path/to/new/environment/VIRTUALENVNAME/bin/activate
 ```
 
 Then install neccesary packages to run the scripts
 ```
-(VIRTUALENVNAME) ~ $ pip install -r /path/to/requirements.txt 
+(VIRTUALENVNAME) ~ $ pip install -r requirements.txt 
 ```
 
 ## How to make predictions:
 Run the script that starts the server (API) locally:
 ```
-(VIRTUALENVNAME) ~ $ python3 /path/to/simple_server.py
+(VIRTUALENVNAME) ~ $ python3 simple_server.py
 ```
 
 In a seperate console, you can use the model with:
@@ -48,7 +54,7 @@ example response:
 and an example script that calls the API to query the database and returns json formatted data
 
 ```
-(VIRTUALENVNAME) ~ $ python3 /path/to/example_request.py
+(VIRTUALENVNAME) ~ $ python3 example_request.py
 {'mpg': '24.301125'}
 ```
 
