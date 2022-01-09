@@ -7,6 +7,10 @@ The basic idea here is that I built a keras model (with model.ipynb) with a fuel
 ### A couple of model notes:
 The dataset itself is composed of. I have replaced the ambigious "origin" that uses 1,2,3 as labels, to "American", "European", or "Asian".
 
+```
+~ $ python3 -m venv /path/to/install/location/VIRTUALENVNAME 
+```
+
 ## Set Up
 First (Optional) Step: create and activate python virtual environemnt or anaconda environment first (skipping this step could cause package dependency/compatibility issues if your machine is used for many projects)
 
@@ -37,16 +41,15 @@ In a seperate console, you can use the model with:
 example response:
 ```
 {
-  'mpg': '26.81698'
+  "mpg": "24.301125"
 }
 ```
 
 and an example script that calls the API to query the database and returns json formatted data
 
-
 ```
 (VIRTUALENVNAME) ~ $ python3 /path/to/example_request.py
-{'mpg': '26.81698'}
+{'mpg': '24.301125'}
 ```
 
 #### Sources:
