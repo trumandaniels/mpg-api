@@ -12,37 +12,37 @@ First (Optional) Step: create and activate python virtual environemnt or anacond
 
 Changing the working directory to wherever you extract the downloaded folder to
 ```
-~ $ cd /path/to/extracted/mpg-api
+(base) truman@laptop ~ $ cd /path/to/extracted/mpg-api-main
 ```
 
 #### Creating python virtual environment:
 either (after installing virtualenv) choosing a specific python version
 ```
-(mpg-api) ~ $  virtualenv --python=/usr/bin/python3.9 /path/to/new/environment/VIRTUALENVNAME 
+(base) truman@laptop ~/mpg-api-main ~ $  virtualenv --python=/usr/bin/python3.9 /path/to/new/environment/VIRTUALENVNAME 
 ```
 or using whatever your PATH is set to (probably fine)
 ```
-(mpg-api) ~ $ python3 -m venv /path/to/new/environment/VIRTUALENVNAME 
+(base) truman@laptop ~/mpg-api-main ~ $ python3 -m venv /path/to/new/environment/VIRTUALENVNAME 
 ```
 #### You can then activate the environment using:
 ```
-~ $ source /path/to/new/environment/VIRTUALENVNAME/bin/activate
+(base) truman@laptop ~/mpg-api-main ~ $ source /path/to/new/environment/VIRTUALENVNAME/bin/activate
 ```
 
 Then install neccesary packages to run the scripts
 ```
-(VIRTUALENVNAME) (mpg-api) ~ $ pip install -r requirements.txt 
+(VIRTUALENVNAME) (base) truman@laptop ~/mpg-api-main ~ $ pip install -r requirements.txt 
 ```
 
 ## How to make predictions:
 Run the script that starts the server (API) locally:
 ```
-(VIRTUALENVNAME) (mpg-api) ~ $ python3 simple_server.py
+(VIRTUALENVNAME) (base) truman@laptop ~/mpg-api-main ~ $ python3 simple_server.py
 ```
 
-In a seperate console, you can use the model with:
+In a seperate console, you can use the model with either:
 ```
-~ $ curl -d '{"cylinders":6,"displacement":300,"horsepower":150,"weight":3000,"acceleration":10,"modelyear":85,"origin":"American"}' -H "Content-Type: application/json" -X POST http://localhost:5000
+(base) truman@laptop ~ $ curl -d '{"cylinders":6,"displacement":300,"horsepower":150,"weight":3000,"acceleration":10,"modelyear":85,"origin":"American"}' -H "Content-Type: application/json" -X POST http://localhost:5000
 ```
 example response:
 ```
@@ -51,10 +51,10 @@ example response:
 }
 ```
 
-and an example script that calls the API to query the database and returns json formatted data
+or by tweaking an example script that calls the API to query the database and returns json formatted data
 
 ```
-(VIRTUALENVNAME) (mpg-api) ~ $ python3 example_request.py
+(VIRTUALENVNAME) (base) truman@laptop ~/mpg-api-main ~ $ python3 example_request.py
 {'mpg': '24.301125'}
 ```
 
