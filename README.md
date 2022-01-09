@@ -18,11 +18,11 @@ Changing the working directory to wherever you extract the downloaded folder to
 #### Creating python virtual environment:
 either
 ```
-~ $  virtualenv --python=/usr/bin/python3.9 /path/to/new/environment/VIRTUALENVNAME 
+(mpg-api) ~ $  virtualenv --python=/usr/bin/python3.9 /path/to/new/environment/VIRTUALENVNAME 
 ```
 or
 ```
-~ $ python3 -m venv /path/to/new/environment/VIRTUALENVNAME 
+(mpg-api) ~ $ python3 -m venv /path/to/new/environment/VIRTUALENVNAME 
 ```
 #### You can then activate the environment using:
 ```
@@ -31,13 +31,13 @@ or
 
 Then install neccesary packages to run the scripts
 ```
-(VIRTUALENVNAME) ~ $ pip install -r requirements.txt 
+(VIRTUALENVNAME) (mpg-api) ~ $ pip install -r requirements.txt 
 ```
 
 ## How to make predictions:
 Run the script that starts the server (API) locally:
 ```
-(VIRTUALENVNAME) ~ $ python3 simple_server.py
+(VIRTUALENVNAME) (mpg-api) ~ $ python3 simple_server.py
 ```
 
 In a seperate console, you can use the model with:
@@ -54,7 +54,7 @@ example response:
 and an example script that calls the API to query the database and returns json formatted data
 
 ```
-(VIRTUALENVNAME) ~ $ python3 example_request.py
+(VIRTUALENVNAME) (mpg-api) ~ $ python3 example_request.py
 {'mpg': '24.301125'}
 ```
 
