@@ -16,11 +16,11 @@ Changing the working directory to wherever you extract the downloaded folder to
 ```
 
 #### Creating python virtual environment:
-either
+either (after installing virtualenv) choosing a specific python version
 ```
 (mpg-api) ~ $  virtualenv --python=/usr/bin/python3.9 /path/to/new/environment/VIRTUALENVNAME 
 ```
-or
+or using whatever your PATH is set to (probably fine)
 ```
 (mpg-api) ~ $ python3 -m venv /path/to/new/environment/VIRTUALENVNAME 
 ```
