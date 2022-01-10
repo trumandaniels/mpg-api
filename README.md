@@ -1,6 +1,6 @@
 # MPG API
 ## What is this project?
-A RESTful API that returns mileage (MPG) and other data on specific cars. I have imported the data into a local sqlite database called auto-mpg.db from data sourced [here](https://www.kaggle.com/uciml/autompg-dataset). I have only tested on linux with python 3.9.4, but I may add Windows compatibility at a later time.
+A RESTful API that estimates mileage (MPG) based on other data about a car. I have imported the data into a local sqlite database called auto-mpg.db from data sourced [here](https://www.kaggle.com/uciml/autompg-dataset). I have only tested on linux with python 3.9.4 but Windows should be compatible with some command line tweaks.
 
 The basic idea here is that I built a keras model (with model.ipynb) with a fuel efficency dataset (auto-mpg.csv) and then serve it via API (simple_server.py).
 
