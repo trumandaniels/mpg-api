@@ -7,15 +7,15 @@ The basic idea here is that I built a keras model (with model.ipynb) with a fuel
 ### A couple of model notes:
 The dataset itself is composed of car data with the following variables
 
-mpg: continuous
-cylinders: multi-valued discrete
-displacement: continuous
-horsepower: continuous
-weight: continuous
-acceleration: continuous
-model year: multi-valued discrete
-origin: multi-valued discrete
-car name: string (unique for each instance). 
+- mpg: continuous
+- cylinders: multi-valued discrete
+- displacement: continuous
+- horsepower: continuous
+- weight: continuous
+- acceleration: continuous
+- model year: multi-valued discrete
+- origin: multi-valued discrete
+- car name: string (unique for each instance). 
 
 I have replaced the ambigious "origin" that uses 1,2,3 as labels, to "American", "European", or "Asian". Also the dataset is only for cars from 1970 to 1993, which means cars from other years are extrapolated poorly (so keep that in mind when estimating a car from 2022).
 
