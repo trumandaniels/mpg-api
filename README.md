@@ -5,7 +5,19 @@ A RESTful API that estimates mileage (MPG) based on other data about a car. I ha
 The basic idea here is that I built a keras model (with model.ipynb) with a fuel efficency dataset (auto-mpg.csv) and then serve it via API (simple_server.py).
 
 ### A couple of model notes:
-The dataset itself is composed of. I have replaced the ambigious "origin" that uses 1,2,3 as labels, to "American", "European", or "Asian". Also the dataset is only for cars from 1970 to 1993, which means cars from other years are extrapolated poorly (so keep that in mind when estimating a car from 2022).
+The dataset itself is composed of car data with the following variables
+
+mpg: continuous
+cylinders: multi-valued discrete
+displacement: continuous
+horsepower: continuous
+weight: continuous
+acceleration: continuous
+model year: multi-valued discrete
+origin: multi-valued discrete
+car name: string (unique for each instance). 
+
+I have replaced the ambigious "origin" that uses 1,2,3 as labels, to "American", "European", or "Asian". Also the dataset is only for cars from 1970 to 1993, which means cars from other years are extrapolated poorly (so keep that in mind when estimating a car from 2022).
 
 ## Set Up
 First (Optional) Step: create and activate python virtual environemnt or anaconda environment first (skipping this step could cause package dependency/compatibility issues if your machine is used for many projects)
