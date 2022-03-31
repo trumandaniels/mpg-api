@@ -1,6 +1,6 @@
 import requests
 
-BASE_URL = "http://127.0.0.1:5000/"
+BASE_URL = "http://127.0.0.1:5000/" #the URL of the server, in this case localhost
 
 data = {
             "cylinders":6,
@@ -12,6 +12,6 @@ data = {
             "origin":"American",
         }
 
-response = requests.post(BASE_URL, json=data)
+response = requests.post(BASE_URL, json=data) #note this is a post request
 print(response.json())
  
